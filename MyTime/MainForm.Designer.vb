@@ -28,14 +28,14 @@ Partial Class MainForm
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.Button1 = New System.Windows.Forms.Button
         Me.Button2 = New System.Windows.Forms.Button
-        Me.TextBox2 = New System.Windows.Forms.TextBox
-        Me.TextBox3 = New System.Windows.Forms.TextBox
+        Me.fnameTxtBox = New System.Windows.Forms.TextBox
+        Me.lnameTxtBox = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
         Me.fname = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
         Me.Button3 = New System.Windows.Forms.Button
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox
+        Me.salute = New System.Windows.Forms.ComboBox
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker
         Me.Label3 = New System.Windows.Forms.Label
         Me.Button4 = New System.Windows.Forms.Button
@@ -82,19 +82,19 @@ Partial Class MainForm
         Me.Button2.Text = "&Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'TextBox2
+        'fnameTxtBox
         '
-        Me.TextBox2.Location = New System.Drawing.Point(101, 124)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox2.TabIndex = 4
+        Me.fnameTxtBox.Location = New System.Drawing.Point(101, 124)
+        Me.fnameTxtBox.Name = "fnameTxtBox"
+        Me.fnameTxtBox.Size = New System.Drawing.Size(100, 20)
+        Me.fnameTxtBox.TabIndex = 4
         '
-        'TextBox3
+        'lnameTxtBox
         '
-        Me.TextBox3.Location = New System.Drawing.Point(101, 168)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox3.TabIndex = 5
+        Me.lnameTxtBox.Location = New System.Drawing.Point(101, 168)
+        Me.lnameTxtBox.Name = "lnameTxtBox"
+        Me.lnameTxtBox.Size = New System.Drawing.Size(100, 20)
+        Me.lnameTxtBox.TabIndex = 5
         '
         'Label1
         '
@@ -143,14 +143,14 @@ Partial Class MainForm
         Me.Button3.TabIndex = 10
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'ComboBox1
+        'salute
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"", "Mr.", "Mrs.", "Ms."})
-        Me.ComboBox1.Location = New System.Drawing.Point(103, 88)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(108, 21)
-        Me.ComboBox1.TabIndex = 11
+        Me.salute.FormattingEnabled = True
+        Me.salute.Items.AddRange(New Object() {"", "Mr.", "Mrs.", "Ms."})
+        Me.salute.Location = New System.Drawing.Point(103, 88)
+        Me.salute.Name = "salute"
+        Me.salute.Size = New System.Drawing.Size(108, 21)
+        Me.salute.TabIndex = 11
         '
         'DateTimePicker1
         '
@@ -186,14 +186,14 @@ Partial Class MainForm
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.DateTimePicker1)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.salute)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.fname)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.lnameTxtBox)
+        Me.Controls.Add(Me.fnameTxtBox)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -211,14 +211,14 @@ Partial Class MainForm
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents fnameTxtBox As System.Windows.Forms.TextBox
+    Friend WithEvents lnameTxtBox As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents fname As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents salute As System.Windows.Forms.ComboBox
     Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button4 As System.Windows.Forms.Button

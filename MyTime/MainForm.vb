@@ -99,7 +99,7 @@ Public Class MainForm
         'label1.Text = "Name:";
     End Sub
 
-    Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
+    Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles fnameTxtBox.TextChanged
 
     End Sub
 
@@ -107,8 +107,6 @@ Public Class MainForm
 
 
         'ResultListView.Columns.Add(" ", 80, HorizontalAlignments.Left)
-       
-
 
         Dim sqlDictionary As New Dictionary(Of String, String)
         sqlDictionary.Add("LocCodeTxtBox", "Office_Loc_code")
@@ -118,5 +116,34 @@ Public Class MainForm
         sqlDictionary.Add("ProvTxtBox", "Prov")
         sqlDictionary.Add("PostalTxtBox", "Postal_Code")
         sqlDictionary.Add("CntryTxtBox", "Country")
+
+
+        'Dim resultListView As ListView
+        'resultListView.GridLines = True
+        ' Sort the items in the list in ascending order.
+        'resultListView.Sorting = SortOrder.Ascending
+
+        Dim resultData(,) As Object = New Object(,) {}
+
+
+
+        'select edit
+        'set the current 
+
+        'set fields to read only.
+       
+
+
+        'Save the info to database
+
+
+
+    End Sub
+
+    Private Sub MainForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Me.fnameTxtBox.Text = "Type your First Name"
+        Me.lnameTxtBox.Text = "Type your Last Name"
+
+        Me.salute.Text = "Ms."
     End Sub
 End Class
