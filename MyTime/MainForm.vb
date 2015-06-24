@@ -125,18 +125,121 @@ Public Class MainForm
 
         Dim resultData(,) As Object = New Object(,) {}
 
-
-
         'select edit
         'set the current 
 
         'set fields to read only.
-       
-
-
         'Save the info to database
 
 
+        ResultListView.Columns.Add(" ", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add(" ", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add(" ", 80, HorizontalAlignments.Left)
+
+        ResultListView.Columns.Add("Item Description", 100, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Qty", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Unit", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("GST", 40, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("PST", 40, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("HST", 40, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Item Total($)", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Product", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("FRE", 80, HorizontalAlignments.Left)
+
+        ResultListView.Columns.Add("Payment #" 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Payment Type", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Amount($)", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Pay Date", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("SAP Doc.#", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Explanation", 200, HorizontalAlignments.Left)
+
+        ResultListView.Columns.Add("Amount($) ", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Client CC" 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Client WBS", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Client GL", 80, HorizontalAlignments.Left)
+        ResultListView.Columns.Add("Client FA", 160, HorizontalAlignments.Left)
+
+
+        Dim sqlDictionary As New Dictionary(Of String, String)
+        sqlDictionary.Add("LocCodeTxtBox", "Office_Loc_code")
+        sqlDictionary.Add("BldgTxtBox", "Building_Name")
+
+        sqlDictionary.Add("CityTxtBox", "City")
+        sqlDictionary.Add("ProvTxtBox", "Prov")
+        sqlDictionary.Add("PostalTxtBox", "Postal_Code")
+        sqlDictionary.Add("CntryTxtBox", "Country")
+
+        InvoiceDetail.actionPerformed = MiscFn.display
+        InvoiceDetail.fromPage = MiscFn.SearchInvoice
+
+        InvoiceDetail.InvNumTxtBox.Text =  
+        InvoiceDetail.InvStatusTxtBox.Text =
+        InvoiceDetail.CreditLockTxtBox.Text =  
+        InvoiceDetail.InvDatePicker = Format()
+        InvoiceDetail.DueDatePicker.Text =
+
+        InvoiceDetail.OrgTxtBox.Text =
+        InvoiceDetail.ClientCodeTxtBox.Text =
+        InvoiceDetail.SAPTxtBox.Text =
+
+        InvoiceDetail.McsFnameTxtBox.Text =
+        InvoiceDetail.McsLnameTxtBox.Text =
+        InvoiceDetail.CntFnameTxtBox.Text =
+        InvoiceDetail.CntLnameTxtBox.Text =
+        InvoiceDetail.ClntTxtBox.Text = 
+
+        InvoiceDetail.AddrTxtBox.Text =
+		InvoiceDetail.PhoneTxtBox.Text =
+		InvoiceDetail.FaxTxtBox.Text =
+		InvoiceDetail.CityTxtBox.Text =
+		InvoiceDetail.ProvTxtBox.Text =
+		InvoiceDetail.CntyTxtBox.Text =
+		InvoiceDetail.PostalTxtBox.Text =
+
+		InvoiceDetail.MgrFname.Text =
+		InvoiceDetail.MgrLname.Text =
+		InvoiceDetail.MgrPhone.Text =
+		InvoiceDetail.RqFname.Text =
+		InvoiceDetail.RqLname.Text =
+		InvoiceDetail.MgrPhone.Text = 
+
+        'use other form for other fields
+
+        InvoiceDetail.UnameTxtBox = "xxx"
+        InvoiceDetail.UnameTxtBox.ReadOnly = True
+
+        InvoiceDetail.CommentsTxtBox = ""
+
+		InvoiceDetail.StrtLowTxtBox.Text =
+		InvoiceDetail.StrtSufLowTxtBox.Text =
+		InvoiceDetail.StrtTxtBox.Text =
+		InvoiceDetail.StrtFloorTxtBox.Text =
+		InvoiceDetail.StrtUnitTxtBox.Text =
+
+		InvoiceDetail.InvFrqCombo.Text =
+		InvoiceDetail.TranYearCombo.Text =
+		InvoiceDetail.AuthTxtBox.Text =
+
+		InvoiceDetail.InvAmtTxtBox.Text =
+		InvoiceDetail.InvCrTxtBox.Text =
+		InvoiceDetail.InTotalTxtBox.Text =
+		InvoiceDetail.PayAmtTxtBox.Text =
+		InvoiceDetail.PayCrTxtBox.Text =
+		InvoiceDetail.PayTtlTxtBox.Text =
+		InvoiceDetail.BalanceTxtBox.Text =
+
+        'Select Add
+        InvoiceDetail.actionPerformed = MiscFn.add
+        InvoiceDetail.fromPage = MiscFn.
+        InvoiceDetail.fromControl = MiscFn.AddInvoice
+
+        'Set the field to locked
+
+        'Select Clone
+        InvoiceDetail.actionPerformed = MiscFn.clone
+
+        'make the fields modifiable
+        'retrieves items
 
     End Sub
 
@@ -145,5 +248,8 @@ Public Class MainForm
         Me.lnameTxtBox.Text = "Type your Last Name"
 
         Me.salute.Text = "Ms."
+
+
+
     End Sub
 End Class
