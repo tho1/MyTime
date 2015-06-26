@@ -172,62 +172,6 @@ Public Class MainForm
         InvoiceDetail.actionPerformed = MiscFn.display
         InvoiceDetail.fromPage = MiscFn.SearchInvoice
 
-        InvoiceDetail.InvNumTxtBox.Text =  
-        InvoiceDetail.InvStatusTxtBox.Text =
-        InvoiceDetail.CreditLockTxtBox.Text =  
-        InvoiceDetail.InvDatePicker = Format()
-        InvoiceDetail.DueDatePicker.Text =
-
-        InvoiceDetail.OrgTxtBox.Text =
-        InvoiceDetail.ClientCodeTxtBox.Text =
-        InvoiceDetail.SAPTxtBox.Text =
-
-        InvoiceDetail.McsFnameTxtBox.Text =
-        InvoiceDetail.McsLnameTxtBox.Text =
-        InvoiceDetail.CntFnameTxtBox.Text =
-        InvoiceDetail.CntLnameTxtBox.Text =
-        InvoiceDetail.ClntTxtBox.Text = 
-
-        InvoiceDetail.AddrTxtBox.Text =
-		InvoiceDetail.PhoneTxtBox.Text =
-		InvoiceDetail.FaxTxtBox.Text =
-		InvoiceDetail.CityTxtBox.Text =
-		InvoiceDetail.ProvTxtBox.Text =
-		InvoiceDetail.CntyTxtBox.Text =
-		InvoiceDetail.PostalTxtBox.Text =
-
-		InvoiceDetail.MgrFname.Text =
-		InvoiceDetail.MgrLname.Text =
-		InvoiceDetail.MgrPhone.Text =
-		InvoiceDetail.RqFname.Text =
-		InvoiceDetail.RqLname.Text =
-		InvoiceDetail.MgrPhone.Text = 
-
-        'use other form for other fields
-
-        InvoiceDetail.UnameTxtBox = "xxx"
-        InvoiceDetail.UnameTxtBox.ReadOnly = True
-
-        InvoiceDetail.CommentsTxtBox = ""
-
-		InvoiceDetail.StrtLowTxtBox.Text =
-		InvoiceDetail.StrtSufLowTxtBox.Text =
-		InvoiceDetail.StrtTxtBox.Text =
-		InvoiceDetail.StrtFloorTxtBox.Text =
-		InvoiceDetail.StrtUnitTxtBox.Text =
-
-		InvoiceDetail.InvFrqCombo.Text =
-		InvoiceDetail.TranYearCombo.Text =
-		InvoiceDetail.AuthTxtBox.Text =
-
-		InvoiceDetail.InvAmtTxtBox.Text =
-		InvoiceDetail.InvCrTxtBox.Text =
-		InvoiceDetail.InTotalTxtBox.Text =
-		InvoiceDetail.PayAmtTxtBox.Text =
-		InvoiceDetail.PayCrTxtBox.Text =
-		InvoiceDetail.PayTtlTxtBox.Text =
-		InvoiceDetail.BalanceTxtBox.Text =
-
         'Select Add
         InvoiceDetail.actionPerformed = MiscFn.add
         InvoiceDetail.fromPage = MiscFn.
@@ -241,7 +185,26 @@ Public Class MainForm
         'make the fields modifiable
         'retrieves items
 
+        'IsNumeric
+        Dim mydate As Date
+        mydate = Format("#07/22/1949#", "MM/dd/yyyy")
+
+        Dim MyObject = Nothing
+
     End Sub
+
+    Private m_intHeight As Integer
+
+    Public Property height() As Integer
+        Get
+            Return m_intHeight
+        End Get
+        Set(ByVal value As Integer)
+            If m_intHeight < 5 Then
+                Exit Property
+            End If
+        End Set
+    End Property
 
     Private Sub MainForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.fnameTxtBox.Text = "Type your First Name"
