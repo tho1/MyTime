@@ -17,6 +17,100 @@ Public Class MainForm
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         Console.Beep()
         Me.Close()
+
+
+
+         -M client
+        resultListView.Columns.Add("Client code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client Org Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Company Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client F. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client L. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("SAP Code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client Type", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str Num.", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str Num Suffix", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str. Unit", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("City", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Prov", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Country", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Postal code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Phone Number", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Phone Extension", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Fax Number", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Email", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Input By ", 80, HorizontalAlignment.Left)
+
+
+        -M client sql
+
+
+        -M CC 
+        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Description", 150, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Short Description", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("B. Unit code ", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("B. Unit Description ", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Service Elem Group code", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Service Elem Group Desc", 150, HorizontalAlignment.Left)
+
+        -M Client CC
+        resultListView.Columns.Add("CL CC ID", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CL code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client F. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client L. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Org Name", 120, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Description", 150, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Short Description", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("WBS Num", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Active ", 80, HorizontalAlignment.Left)
+
+        -M GL
+        resultListView.Columns.Add("GL Description", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("GL Category", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("GL Group", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("GL Subgroup", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("FRE Approved", 80, HorizontalAlignment.Left)
+
+        -- CC Search 
+        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Cost Centre Description", 150, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Business Unit Code", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Business Unit Desc ", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Service Elem Group", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Service Elem Group Desc", 150, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str Num.", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str Num Suffix", 80, HorizontalAlignment.Left)
+
+
+
+        Dim sqlDictionary As New Dictionary(Of String, String)
+        sqlDictionary.Add("orgNameTxtBox", "client_org_name")
+        sqlDictionary.Add("FnameTxtBox", "client_fname")
+        sqlDictionary.Add("LnameTxtBox", "client_lname")
+        sqlDictionary.Add("clientTypeTxtBox", "client_type")
+
+        sqlDictionary.Add("StrtSufTxtBox", "str_num_suffix")
+        sqlDictionary.Add("StrtNameTxtBox", "str_name")
+        sqlDictionary.Add("StrtUnitTxtBox", "str_unit")
+        sqlDictionary.Add("cityTxtBox", "city")
+        sqlDictionary.Add("provTxtBox", "prov")
+        sqlDictionary.Add("cntyTxtBox", "country")
+        sqlDictionary.Add("postalTxtBox", "postal_code")
+        sqlDictionary.Add("phoneTxtBox", "phone_num")
+        sqlDictionary.Add("faxTxtBox", "fax_num")
+        sqlDictionary.Add("emailTxtBox", "email")
+
+        sqlDictionary.Add("SAPTxtBox", "client_sap_code")
+        sqlDictionary.Add("inputbyTxtBox", "input_by")
+        sqlDictionary.Add("phoneExtTxtBox", "phone_extension")
+
+        'select, insert, edit, delete sql for the entry
+
+
+
     End Sub
 
 
@@ -172,6 +266,62 @@ Public Class MainForm
         InvoiceDetail.actionPerformed = MiscFn.display
         InvoiceDetail.fromPage = MiscFn.SearchInvoice
 
+        InvoiceDetail.InvNumTxtBox.Text =  
+        InvoiceDetail.InvStatusTxtBox.Text =
+        InvoiceDetail.CreditLockTxtBox.Text =  
+        InvoiceDetail.InvDatePicker = Format()
+        InvoiceDetail.DueDatePicker.Text =
+
+        InvoiceDetail.OrgTxtBox.Text =
+        InvoiceDetail.ClientCodeTxtBox.Text =
+        InvoiceDetail.SAPTxtBox.Text =
+
+        InvoiceDetail.McsFnameTxtBox.Text =
+        InvoiceDetail.McsLnameTxtBox.Text =
+        InvoiceDetail.CntFnameTxtBox.Text =
+        InvoiceDetail.CntLnameTxtBox.Text =
+        InvoiceDetail.ClntTxtBox.Text = 
+
+        InvoiceDetail.AddrTxtBox.Text =
+		InvoiceDetail.PhoneTxtBox.Text =
+		InvoiceDetail.FaxTxtBox.Text =
+		InvoiceDetail.CityTxtBox.Text =
+		InvoiceDetail.ProvTxtBox.Text =
+		InvoiceDetail.CntyTxtBox.Text =
+		InvoiceDetail.PostalTxtBox.Text =
+
+		InvoiceDetail.MgrFname.Text =
+		InvoiceDetail.MgrLname.Text =
+		InvoiceDetail.MgrPhone.Text =
+		InvoiceDetail.RqFname.Text =
+		InvoiceDetail.RqLname.Text =
+		InvoiceDetail.MgrPhone.Text = 
+
+        'use other form for other fields
+
+        InvoiceDetail.UnameTxtBox = "xxx"
+        InvoiceDetail.UnameTxtBox.ReadOnly = True
+
+        InvoiceDetail.CommentsTxtBox = ""
+
+		InvoiceDetail.StrtLowTxtBox.Text =
+		InvoiceDetail.StrtSufLowTxtBox.Text =
+		InvoiceDetail.StrtTxtBox.Text =
+		InvoiceDetail.StrtFloorTxtBox.Text =
+		InvoiceDetail.StrtUnitTxtBox.Text =
+
+		InvoiceDetail.InvFrqCombo.Text =
+		InvoiceDetail.TranYearCombo.Text =
+		InvoiceDetail.AuthTxtBox.Text =
+
+		InvoiceDetail.InvAmtTxtBox.Text =
+		InvoiceDetail.InvCrTxtBox.Text =
+		InvoiceDetail.InTotalTxtBox.Text =
+		InvoiceDetail.PayAmtTxtBox.Text =
+		InvoiceDetail.PayCrTxtBox.Text =
+		InvoiceDetail.PayTtlTxtBox.Text =
+		InvoiceDetail.BalanceTxtBox.Text =
+
         'Select Add
         InvoiceDetail.actionPerformed = MiscFn.add
         InvoiceDetail.fromPage = MiscFn.
@@ -185,26 +335,7 @@ Public Class MainForm
         'make the fields modifiable
         'retrieves items
 
-        'IsNumeric
-        Dim mydate As Date
-        mydate = Format("#07/22/1949#", "MM/dd/yyyy")
-
-        Dim MyObject = Nothing
-
     End Sub
-
-    Private m_intHeight As Integer
-
-    Public Property height() As Integer
-        Get
-            Return m_intHeight
-        End Get
-        Set(ByVal value As Integer)
-            If m_intHeight < 5 Then
-                Exit Property
-            End If
-        End Set
-    End Property
 
     Private Sub MainForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.fnameTxtBox.Text = "Type your First Name"
