@@ -18,98 +18,7 @@ Public Class MainForm
         Console.Beep()
         Me.Close()
 
-
-
-         -M client
-        resultListView.Columns.Add("Client code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client Org Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Company Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client F. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client L. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("SAP Code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client Type", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str Num.", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str Num Suffix", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str. Unit", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("City", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Prov", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Country", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Postal code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Phone Number", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Phone Extension", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Fax Number", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Email", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Input By ", 80, HorizontalAlignment.Left)
-
-
-        -M client sql
-
-
-        -M CC 
-        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Description", 150, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Short Description", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("B. Unit code ", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("B. Unit Description ", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Service Elem Group code", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Service Elem Group Desc", 150, HorizontalAlignment.Left)
-
-        -M Client CC
-        resultListView.Columns.Add("CL CC ID", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CL code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client F. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client L. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Org Name", 120, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Description", 150, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Short Description", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("WBS Num", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Active ", 80, HorizontalAlignment.Left)
-
-        -M GL
-        resultListView.Columns.Add("GL Description", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("GL Category", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("GL Group", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("GL Subgroup", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("FRE Approved", 80, HorizontalAlignment.Left)
-
-        -- CC Search 
-        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Cost Centre Description", 150, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Business Unit Code", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Business Unit Desc ", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Service Elem Group", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Service Elem Group Desc", 150, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str Num.", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str Num Suffix", 80, HorizontalAlignment.Left)
-
-
-
-        Dim sqlDictionary As New Dictionary(Of String, String)
-        sqlDictionary.Add("orgNameTxtBox", "client_org_name")
-        sqlDictionary.Add("FnameTxtBox", "client_fname")
-        sqlDictionary.Add("LnameTxtBox", "client_lname")
-        sqlDictionary.Add("clientTypeTxtBox", "client_type")
-
-        sqlDictionary.Add("StrtSufTxtBox", "str_num_suffix")
-        sqlDictionary.Add("StrtNameTxtBox", "str_name")
-        sqlDictionary.Add("StrtUnitTxtBox", "str_unit")
-        sqlDictionary.Add("cityTxtBox", "city")
-        sqlDictionary.Add("provTxtBox", "prov")
-        sqlDictionary.Add("cntyTxtBox", "country")
-        sqlDictionary.Add("postalTxtBox", "postal_code")
-        sqlDictionary.Add("phoneTxtBox", "phone_num")
-        sqlDictionary.Add("faxTxtBox", "fax_num")
-        sqlDictionary.Add("emailTxtBox", "email")
-
-        sqlDictionary.Add("SAPTxtBox", "client_sap_code")
-        sqlDictionary.Add("inputbyTxtBox", "input_by")
-        sqlDictionary.Add("phoneExtTxtBox", "phone_extension")
-
-        'select, insert, edit, delete sql for the entry
-
-
+       
 
     End Sub
 
@@ -200,17 +109,7 @@ Public Class MainForm
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
 
 
-        'ResultListView.Columns.Add(" ", 80, HorizontalAlignments.Left)
-
-        Dim sqlDictionary As New Dictionary(Of String, String)
-        sqlDictionary.Add("LocCodeTxtBox", "Office_Loc_code")
-        sqlDictionary.Add("BldgTxtBox", "Building_Name")
-
-        sqlDictionary.Add("CityTxtBox", "City")
-        sqlDictionary.Add("ProvTxtBox", "Prov")
-        sqlDictionary.Add("PostalTxtBox", "Postal_Code")
-        sqlDictionary.Add("CntryTxtBox", "Country")
-
+        'ResultListView.Columns.Add(" ", 80, HorizontalAlignment.Left)
 
         'Dim resultListView As ListView
         'resultListView.GridLines = True
@@ -226,111 +125,8 @@ Public Class MainForm
         'Save the info to database
 
 
-        ResultListView.Columns.Add(" ", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add(" ", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add(" ", 80, HorizontalAlignments.Left)
+       
 
-        ResultListView.Columns.Add("Item Description", 100, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Qty", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Unit", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("GST", 40, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("PST", 40, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("HST", 40, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Item Total($)", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Product", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("FRE", 80, HorizontalAlignments.Left)
-
-        ResultListView.Columns.Add("Payment #" 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Payment Type", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Amount($)", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Pay Date", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("SAP Doc.#", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Explanation", 200, HorizontalAlignments.Left)
-
-        ResultListView.Columns.Add("Amount($) ", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Client CC" 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Client WBS", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Client GL", 80, HorizontalAlignments.Left)
-        ResultListView.Columns.Add("Client FA", 160, HorizontalAlignments.Left)
-
-
-        Dim sqlDictionary As New Dictionary(Of String, String)
-        sqlDictionary.Add("LocCodeTxtBox", "Office_Loc_code")
-        sqlDictionary.Add("BldgTxtBox", "Building_Name")
-
-        sqlDictionary.Add("CityTxtBox", "City")
-        sqlDictionary.Add("ProvTxtBox", "Prov")
-        sqlDictionary.Add("PostalTxtBox", "Postal_Code")
-        sqlDictionary.Add("CntryTxtBox", "Country")
-
-        InvoiceDetail.actionPerformed = MiscFn.display
-        InvoiceDetail.fromPage = MiscFn.SearchInvoice
-
-        InvoiceDetail.InvNumTxtBox.Text =  
-        InvoiceDetail.InvStatusTxtBox.Text =
-        InvoiceDetail.CreditLockTxtBox.Text =  
-        InvoiceDetail.InvDatePicker = Format()
-        InvoiceDetail.DueDatePicker.Text =
-
-        InvoiceDetail.OrgTxtBox.Text =
-        InvoiceDetail.ClientCodeTxtBox.Text =
-        InvoiceDetail.SAPTxtBox.Text =
-
-        InvoiceDetail.McsFnameTxtBox.Text =
-        InvoiceDetail.McsLnameTxtBox.Text =
-        InvoiceDetail.CntFnameTxtBox.Text =
-        InvoiceDetail.CntLnameTxtBox.Text =
-        InvoiceDetail.ClntTxtBox.Text = 
-
-        InvoiceDetail.AddrTxtBox.Text =
-		InvoiceDetail.PhoneTxtBox.Text =
-		InvoiceDetail.FaxTxtBox.Text =
-		InvoiceDetail.CityTxtBox.Text =
-		InvoiceDetail.ProvTxtBox.Text =
-		InvoiceDetail.CntyTxtBox.Text =
-		InvoiceDetail.PostalTxtBox.Text =
-
-		InvoiceDetail.MgrFname.Text =
-		InvoiceDetail.MgrLname.Text =
-		InvoiceDetail.MgrPhone.Text =
-		InvoiceDetail.RqFname.Text =
-		InvoiceDetail.RqLname.Text =
-		InvoiceDetail.MgrPhone.Text = 
-
-        'use other form for other fields
-
-        InvoiceDetail.UnameTxtBox = "xxx"
-        InvoiceDetail.UnameTxtBox.ReadOnly = True
-
-        InvoiceDetail.CommentsTxtBox = ""
-
-		InvoiceDetail.StrtLowTxtBox.Text =
-		InvoiceDetail.StrtSufLowTxtBox.Text =
-		InvoiceDetail.StrtTxtBox.Text =
-		InvoiceDetail.StrtFloorTxtBox.Text =
-		InvoiceDetail.StrtUnitTxtBox.Text =
-
-		InvoiceDetail.InvFrqCombo.Text =
-		InvoiceDetail.TranYearCombo.Text =
-		InvoiceDetail.AuthTxtBox.Text =
-
-		InvoiceDetail.InvAmtTxtBox.Text =
-		InvoiceDetail.InvCrTxtBox.Text =
-		InvoiceDetail.InTotalTxtBox.Text =
-		InvoiceDetail.PayAmtTxtBox.Text =
-		InvoiceDetail.PayCrTxtBox.Text =
-		InvoiceDetail.PayTtlTxtBox.Text =
-		InvoiceDetail.BalanceTxtBox.Text =
-
-        'Select Add
-        InvoiceDetail.actionPerformed = MiscFn.add
-        InvoiceDetail.fromPage = MiscFn.
-        InvoiceDetail.fromControl = MiscFn.AddInvoice
-
-        'Set the field to locked
-
-        'Select Clone
-        InvoiceDetail.actionPerformed = MiscFn.clone
 
         'make the fields modifiable
         'retrieves items
@@ -342,6 +138,224 @@ Public Class MainForm
         Me.lnameTxtBox.Text = "Type your Last Name"
 
         Me.salute.Text = "Ms."
+    End Sub
+
+   
+
+    Public Sub New()
+
+        ' This call is required by the Windows Form Designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+
+        'ItemDescTxtBox
+        'QuantityTxtBox
+        'UnitPriceTxtBox
+        'UnitCombo
+
+        'gstChkBtn
+        'pstChkBtn
+        'hstChkBtn
+        'gstTxtBox
+        'pstTxtBox
+        'hstTxtBox
+
+        'ProductCodeTxtBox
+        'clientCCTxtBox
+        'clientWBSTxtBox
+        'clientGLTxtBox
+        'clientFACombo
+
+
+        'ItemTotalTxtBox
+        '
+        Dim fundingSourcesList As String() = {"Operating", "Capital"}
+        Dim taxCodeList As String() = {"R0", "R1", "R2", "R3", "R8", "R9"}
+
+        fundingSourcesCombo.Items.AddRange(fundingSourcesList)
+
+        If fundingSourcesCombo.SelectedValue = fundingSourcesList(0) Then
+
+            costCentreTxtBox.Enabled = True
+            costCentreSrchBtn.Enabled = True
+
+
+            wbsNoTxtBox.Enabled = False
+
+            'get the sql
+            serviceElemGroupCombo.Enabled = False
+            businessUnitCombo.Enabled = False
+            funcAreaCombo.Enabled = False
+        Else
+            costCentreTxtBox.Enabled = False
+            costCentreSrchBtn.Enabled = False
+            wbsNoTxtBox.Enabled = True
+
+            'get the sql
+            serviceElemGroupCombo.Enabled = True
+            businessUnitCombo.Enabled = True
+            funcAreaCombo.Enabled = True
+        End If
+
+        'mainGLTxtBox
+        'subGLTxtBox
+        'recoveryBasisCombo  'dropdown
+        'costRecoveryTxtBox
+
+        'Save 
+
+        'Save and Continue
+        '
+
+
+        Dim sqlDictionary As New Dictionary(Of String, String)
+
+        '-----------------------------
+        sqlDictionary.Add("LocCodeTxtBox", "Office_Loc_code")
+        sqlDictionary.Add("BldgTxtBox", "Building_Name")
+
+        sqlDictionary.Add("CityTxtBox", "City")
+        sqlDictionary.Add("ProvTxtBox", "Prov")
+        sqlDictionary.Add("PostalTxtBox", "Postal_Code")
+        sqlDictionary.Add("CntryTxtBox", "Country")
+
+        resultListView.Columns.Add(" ", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add(" ", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add(" ", 80, HorizontalAlignment.Left)
+
+        resultListView.Columns.Add("Item Description", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Qty", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Unit", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("GST", 40, HorizontalAlignment.Left)
+        resultListView.Columns.Add("PST", 40, HorizontalAlignment.Left)
+        resultListView.Columns.Add("HST", 40, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Item Total($)", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Product", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("FRE", 80, HorizontalAlignment.Left)
+
+        resultListView.Columns.Add("Payment #", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Payment Type", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Amount($)", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Pay Date", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("SAP Doc.#", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Explanation", 200, HorizontalAlignment.Left)
+
+        resultListView.Columns.Add("Amount($) ", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client CC", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client WBS", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client GL", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client FA", 160, HorizontalAlignment.Left)
+
+
+        sqlDictionary.Add("LocCodeTxtBox", "Office_Loc_code")
+        sqlDictionary.Add("BldgTxtBox", "Building_Name")
+
+        sqlDictionary.Add("CityTxtBox", "City")
+        sqlDictionary.Add("ProvTxtBox", "Prov")
+        sqlDictionary.Add("PostalTxtBox", "Postal_Code")
+        sqlDictionary.Add("CntryTxtBox", "Country")
+
+
+        'Product Search
+        resultListView.Columns.Add("Product code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Product Description", 300, HorizontalAlignment.Left)
+
+        sqlDictionary.Add("codeTxtBox", "prod_code")
+        sqlDictionary.Add("descTxtBox", "prod_desc")
+
+
+        '-M client
+        resultListView.Columns.Add("Client code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client Org Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Company Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client F. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client L. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("SAP Code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client Type", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str Num.", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str Num Suffix", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str. Unit", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("City", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Prov", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Country", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Postal code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Phone Number", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Phone Extension", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Fax Number", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Email", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Input By ", 80, HorizontalAlignment.Left)
+
+
+        '-M client sql
+
+
+        '-M CC 
+        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Description", 150, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Short Description", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("B. Unit code ", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("B. Unit Description ", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Service Elem Group code", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Service Elem Group Desc", 150, HorizontalAlignment.Left)
+
+        '-M Client CC
+        resultListView.Columns.Add("CL CC ID", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CL code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client F. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Client L. Name", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Org Name", 120, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Description", 150, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CC Short Description", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("WBS Num", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Active ", 80, HorizontalAlignment.Left)
+
+        '-M GL
+        resultListView.Columns.Add("GL Description", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("GL Category", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("GL Group", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("GL Subgroup", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("FRE Approved", 80, HorizontalAlignment.Left)
+
+        '-- CC Search 
+        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Cost Centre Description", 150, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Business Unit Code", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Business Unit Desc ", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Service Elem Group", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Service Elem Group Desc", 150, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str Num.", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Str Num Suffix", 80, HorizontalAlignment.Left)
+
+        sqlDictionary.Add("orgNameTxtBox", "client_org_name")
+        sqlDictionary.Add("FnameTxtBox", "client_fname")
+        sqlDictionary.Add("LnameTxtBox", "client_lname")
+        sqlDictionary.Add("clientTypeTxtBox", "client_type")
+
+        sqlDictionary.Add("StrtSufTxtBox", "str_num_suffix")
+        sqlDictionary.Add("StrtNameTxtBox", "str_name")
+        sqlDictionary.Add("StrtUnitTxtBox", "str_unit")
+        sqlDictionary.Add("cityTxtBox", "city")
+        sqlDictionary.Add("provTxtBox", "prov")
+        sqlDictionary.Add("cntyTxtBox", "country")
+        sqlDictionary.Add("postalTxtBox", "postal_code")
+        sqlDictionary.Add("phoneTxtBox", "phone_num")
+        sqlDictionary.Add("faxTxtBox", "fax_num")
+        sqlDictionary.Add("emailTxtBox", "email")
+
+        sqlDictionary.Add("SAPTxtBox", "client_sap_code")
+        sqlDictionary.Add("inputbyTxtBox", "input_by")
+        sqlDictionary.Add("phoneExtTxtBox", "phone_extension")
+
+        'select, insert, edit, delete sql for the entry
+
+    End Sub
+
+
+    Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles fundingSourcesCombo.SelectedIndexChanged
 
 
 

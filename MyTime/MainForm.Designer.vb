@@ -39,6 +39,16 @@ Partial Class MainForm
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker
         Me.Label3 = New System.Windows.Forms.Label
         Me.Button4 = New System.Windows.Forms.Button
+        Me.resultListView = New System.Windows.Forms.ListView
+        Me.fundingSourcesCombo = New System.Windows.Forms.ComboBox
+        Me.fundingLbl = New System.Windows.Forms.Label
+        Me.costCentreTxtBox = New System.Windows.Forms.TextBox
+        Me.costCentreLbl = New System.Windows.Forms.Label
+        Me.costCentreSrchBtn = New System.Windows.Forms.Button
+        Me.wbsNoTxtBox = New System.Windows.Forms.TextBox
+        Me.serviceElemGroupCombo = New System.Windows.Forms.ComboBox
+        Me.funcAreaCombo = New System.Windows.Forms.ComboBox
+        Me.businessUnitCombo = New System.Windows.Forms.ComboBox
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,7 +57,7 @@ Partial Class MainForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(714, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(894, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -66,7 +76,7 @@ Partial Class MainForm
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(270, 354)
+        Me.Button1.Location = New System.Drawing.Point(270, 562)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
@@ -75,7 +85,7 @@ Partial Class MainForm
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(379, 354)
+        Me.Button2.Location = New System.Drawing.Point(379, 562)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 2
@@ -137,7 +147,7 @@ Partial Class MainForm
         'Button3
         '
         Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(486, 341)
+        Me.Button3.Location = New System.Drawing.Point(486, 549)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(66, 58)
         Me.Button3.TabIndex = 10
@@ -171,18 +181,109 @@ Partial Class MainForm
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(138, 351)
+        Me.Button4.Location = New System.Drawing.Point(138, 559)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(88, 28)
         Me.Button4.TabIndex = 14
         Me.Button4.Text = "Export"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'resultListView
+        '
+        Me.resultListView.Location = New System.Drawing.Point(83, 392)
+        Me.resultListView.Name = "resultListView"
+        Me.resultListView.Size = New System.Drawing.Size(669, 118)
+        Me.resultListView.TabIndex = 15
+        Me.resultListView.UseCompatibleStateImageBehavior = False
+        '
+        'fundingSourcesCombo
+        '
+        Me.fundingSourcesCombo.FormattingEnabled = True
+        Me.fundingSourcesCombo.Location = New System.Drawing.Point(100, 274)
+        Me.fundingSourcesCombo.Name = "fundingSourcesCombo"
+        Me.fundingSourcesCombo.Size = New System.Drawing.Size(100, 21)
+        Me.fundingSourcesCombo.TabIndex = 16
+        '
+        'fundingLbl
+        '
+        Me.fundingLbl.AutoSize = True
+        Me.fundingLbl.Location = New System.Drawing.Point(27, 277)
+        Me.fundingLbl.Name = "fundingLbl"
+        Me.fundingLbl.Size = New System.Drawing.Size(45, 13)
+        Me.fundingLbl.TabIndex = 17
+        Me.fundingLbl.Text = "Funding"
+        '
+        'costCentreTxtBox
+        '
+        Me.costCentreTxtBox.Location = New System.Drawing.Point(373, 145)
+        Me.costCentreTxtBox.Name = "costCentreTxtBox"
+        Me.costCentreTxtBox.Size = New System.Drawing.Size(80, 20)
+        Me.costCentreTxtBox.TabIndex = 18
+        '
+        'costCentreLbl
+        '
+        Me.costCentreLbl.AutoSize = True
+        Me.costCentreLbl.Location = New System.Drawing.Point(306, 145)
+        Me.costCentreLbl.Name = "costCentreLbl"
+        Me.costCentreLbl.Size = New System.Drawing.Size(39, 13)
+        Me.costCentreLbl.TabIndex = 19
+        Me.costCentreLbl.Text = "Label5"
+        '
+        'costCentreSrchBtn
+        '
+        Me.costCentreSrchBtn.Location = New System.Drawing.Point(498, 148)
+        Me.costCentreSrchBtn.Name = "costCentreSrchBtn"
+        Me.costCentreSrchBtn.Size = New System.Drawing.Size(62, 16)
+        Me.costCentreSrchBtn.TabIndex = 20
+        Me.costCentreSrchBtn.Text = "Button5"
+        Me.costCentreSrchBtn.UseVisualStyleBackColor = True
+        '
+        'wbsNoTxtBox
+        '
+        Me.wbsNoTxtBox.Location = New System.Drawing.Point(364, 186)
+        Me.wbsNoTxtBox.Name = "wbsNoTxtBox"
+        Me.wbsNoTxtBox.Size = New System.Drawing.Size(100, 20)
+        Me.wbsNoTxtBox.TabIndex = 21
+        '
+        'serviceElemGroupCombo
+        '
+        Me.serviceElemGroupCombo.FormattingEnabled = True
+        Me.serviceElemGroupCombo.Location = New System.Drawing.Point(364, 222)
+        Me.serviceElemGroupCombo.Name = "serviceElemGroupCombo"
+        Me.serviceElemGroupCombo.Size = New System.Drawing.Size(121, 21)
+        Me.serviceElemGroupCombo.TabIndex = 22
+        '
+        'funcAreaCombo
+        '
+        Me.funcAreaCombo.FormattingEnabled = True
+        Me.funcAreaCombo.Location = New System.Drawing.Point(364, 277)
+        Me.funcAreaCombo.Name = "funcAreaCombo"
+        Me.funcAreaCombo.Size = New System.Drawing.Size(121, 21)
+        Me.funcAreaCombo.TabIndex = 23
+        '
+        'businessUnitCombo
+        '
+        Me.businessUnitCombo.FormattingEnabled = True
+        Me.businessUnitCombo.Location = New System.Drawing.Point(364, 249)
+        Me.businessUnitCombo.Name = "businessUnitCombo"
+        Me.businessUnitCombo.Size = New System.Drawing.Size(121, 21)
+        Me.businessUnitCombo.TabIndex = 24
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(714, 411)
+        Me.ClientSize = New System.Drawing.Size(894, 655)
+        Me.Controls.Add(Me.businessUnitCombo)
+        Me.Controls.Add(Me.funcAreaCombo)
+        Me.Controls.Add(Me.serviceElemGroupCombo)
+        Me.Controls.Add(Me.wbsNoTxtBox)
+        Me.Controls.Add(Me.costCentreSrchBtn)
+        Me.Controls.Add(Me.costCentreLbl)
+        Me.Controls.Add(Me.costCentreTxtBox)
+        Me.Controls.Add(Me.fundingLbl)
+        Me.Controls.Add(Me.fundingSourcesCombo)
+        Me.Controls.Add(Me.resultListView)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.DateTimePicker1)
@@ -222,5 +323,15 @@ Partial Class MainForm
     Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents resultListView As System.Windows.Forms.ListView
+    Friend WithEvents fundingSourcesCombo As System.Windows.Forms.ComboBox
+    Friend WithEvents fundingLbl As System.Windows.Forms.Label
+    Friend WithEvents costCentreTxtBox As System.Windows.Forms.TextBox
+    Friend WithEvents costCentreLbl As System.Windows.Forms.Label
+    Friend WithEvents costCentreSrchBtn As System.Windows.Forms.Button
+    Friend WithEvents wbsNoTxtBox As System.Windows.Forms.TextBox
+    Friend WithEvents serviceElemGroupCombo As System.Windows.Forms.ComboBox
+    Friend WithEvents funcAreaCombo As System.Windows.Forms.ComboBox
+    Friend WithEvents businessUnitCombo As System.Windows.Forms.ComboBox
 
 End Class
