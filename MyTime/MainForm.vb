@@ -3,6 +3,7 @@ Imports System.Data.SqlClient
 Imports System.Data
 Imports System.Data.SqlServerCe.SqlCeDataAdapter
 Imports System.Data.SqlServerCe.SqlCeConnection
+Imports System.Text.StringBuilder
 
 Public Class MainForm
 
@@ -13,15 +14,37 @@ Public Class MainForm
     Private m_rowPosition As Integer = 0
     Private WithEvents m_DataGrid As New DataGridView
     Private mydataSet As DataSet
+    Public actionPerformed As String
+
+    Public Const defaultaction As String = "default"
+    Public Const add = "Add"
+    Public Const edit = "Edit"
+    Public Const delete = "Delete"
+    Public Const save = "Save"
+    Public Const cancel = "Cancel"
+
+
+    Public sqlDictionary As New Dictionary(Of String, String)
+
 
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         Console.Beep()
         Me.Close()
 
-       
-
     End Sub
 
+
+    Private Sub setupGrid()
+        resultListView.Columns.Add("OrderId", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("OrderItemId", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("ItemName", 80, HorizontalAlignment.Left)
+        resultListView.Columns.Add("ItemDesc", 80, HorizontalAlignment.Left)
+
+        resultListView.GridLines = True
+        resultListView.Sorting = Windows.Forms.SortOrder.Ascending
+
+        resultListView.Show()
+    End Sub
 
     Private Sub SetupDataGridView()
         Me.Controls.Add(m_DataGrid)
@@ -56,9 +79,17 @@ Public Class MainForm
             .MultiSelect = False
             .Dock = DockStyle.Fill
         End With
+
+        resultListView.Columns.Add("OrderID", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("CusotmerID", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Title", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("Artist", 100, HorizontalAlignment.Left)
+        resultListView.Columns.Add("ShipDate", 100, HorizontalAlignment.Left)
+
+
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKBtn.Click
 
         ' Set some connection string properties e.g.:
         ' 
@@ -69,54 +100,96 @@ Public Class MainForm
 
         m_cn.Open()
 
-        MsgBox(m_cn.ServerVersion)
+        'MsgBox(m_cn.ServerVersion)
 
-        m_DA = New SqlCeDataAdapter("SELECT * FROM Orders", m_cn)
-        'System.Data.SqlServerCe.SqlCeDataAdapter(dataAdapter = New SqlCeDataAdapter(Command))
+        m_DA = New SqlCeDataAdapter("SELECT OrderId, OrderItemID, itemName, ItemDesc FROM OrderItem", m_cn)
 
-        m_DA.Fill(m_DataTable)
-        m_DataGrid.DataSource = m_DataTable
+        'Using reader As SqlDataReader = Command.ExecuteReader()
+        Dim reader As SqlDataReader
+        While reader.Read()
 
-        m_DataGrid.Location = New Point(41, 167)
-        m_DataGrid.Size = New Size(300, 300)
+            Dim Str(5) As String
+            For i = 0 To 4
+                If reader(i).ToString.Length > 0 Then
+                    Str(i) = Trim(reader(i))
+                End If
+            Next
 
-        m_DataGrid.Show()
+        End While
+        'End Using
 
         m_cn.Close()
-        m_cn.Dispose()
-    End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        Dim a As New Airplane(1, "Boeing 747", 800)
+        'System.Data.SqlServerCe.SqlCeDataAdapter(dataAdapter = New SqlCeDataAdapter(Command))
 
+        'm_DA.Fill(m_DataTable)
+        'm_DataGrid.DataSource = m_DataTable
 
-        'bs.DataMember = "Passengers";
-        'bs.DataSource = a;
-        'bs.Add(new Passenger("Joe Shmuck"));
-        'bs.Add(new Passenger("Jane Doe"));
-        'bs.Add(new Passenger("John Smith"));
+        'm_DataGrid.Location = New Point(41, 167)
+        'm_DataGrid.Size = New Size(300, 300)
 
-        'grid.DataSource = bs;
-        'grid.AutoGenerateColumns = true;
-        'txtModel.DataBindings.Add("Text", bs, "Name");
-        'label1.Text = "Name:";
+        'm_DataGrid.Show()
+
+        m_cn.Close()
+        'm_cn.Dispose()
     End Sub
 
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles fnameTxtBox.TextChanged
 
     End Sub
 
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles picBtn.Click
+
+
+        Dim connection As New System.Data.SqlServerCe.SqlCeConnection
+        Dim cmdStr As String = "SELECT OrderId, OrderItemID, itemName, ItemDesc FROM OrderItem"
+
+        Dim conStr = "Persist Security Info = False; Data Source = 'C:\work\thomas\db\MyWork.sdf';" & _
+            "Password = '123456'; File Mode = 'shared read'; " & _
+            "Max Database Size = 256; Max Buffer Size = 1024"
+
+        Dim row As ListViewItem
+
+        Try
+            connection.ConnectionString = conStr
+            Using cmd As New SqlCeCommand(cmdStr, connection)
+
+                connection.Open()
+
+                'MsgBox(connection.ServerVersion)
+                Using Reader As SqlCeDataReader = cmd.ExecuteReader()
+                    While Reader.Read()
+                        row = New ListViewItem
+
+                        Dim Str(4) As String
+                        For i = 0 To 3
+                            If Reader(i).ToString.Length > 0 Then
+                                Str(i) = Trim(Reader(i))
+                            End If
+                        Next
+
+                        row = New ListViewItem(Str)
+                        resultListView.Items.Add(row)
+                    End While
+                End Using
+            End Using
+
+            connection.Close()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.OkOnly, Me.Text)
+        End Try
+
+        resultListView.Show()
 
 
         'ResultListView.Columns.Add(" ", 80, HorizontalAlignment.Left)
-
         'Dim resultListView As ListView
         'resultListView.GridLines = True
         ' Sort the items in the list in ascending order.
         'resultListView.Sorting = SortOrder.Ascending
 
-        Dim resultData(,) As Object = New Object(,) {}
+        'Dim resultData(,) As Object = New Object(,) {}
 
         'select edit
         'set the current 
@@ -124,32 +197,64 @@ Public Class MainForm
         'set fields to read only.
         'Save the info to database
 
-
-       
-
-
         'make the fields modifiable
         'retrieves items
 
     End Sub
 
     Private Sub MainForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'MsgBox("inside load")
+
         Me.fnameTxtBox.Text = "Type your First Name"
         Me.lnameTxtBox.Text = "Type your Last Name"
-
         Me.salute.Text = "Ms."
     End Sub
 
-   
+    Private Sub configButtons(ByVal action As String)
+
+        If action = defaultaction Or action = cancel Then
+            
+            saveBtn.Enabled = False
+            AddBtn.Enabled = True
+            EditBtn.Enabled = False
+            delBtn.Enabled = False
+
+            closeBtn.Text = "Close"
+        ElseIf action = add Or action = edit Then
+
+            saveBtn.Enabled = True
+            AddBtn.Enabled = False
+            EditBtn.Enabled = False
+            delBtn.Enabled = False
+            closeBtn.Text = "Cancel"
+
+        ElseIf action = save Then
+            saveBtn.Enabled = False
+            AddBtn.Enabled = True
+            EditBtn.Enabled = False
+            delBtn.Enabled = False
+            closeBtn.Text = "Close"
+
+        End If
+
+    End Sub
 
     Public Sub New()
 
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
 
+        setupGrid()
+
+        configButtons(defaultaction)
+
+        'set to Client CC for now
+        ccCodeTxtBox.Enabled = True
+        ccDescTxtBox.Enabled = True
+        ccShortDescTxtBox.Enabled = True
+        wbsTxtbox.Enabled = False
+
         ' Add any initialization after the InitializeComponent() call.
-
-
         'ItemDescTxtBox
         'QuantityTxtBox
         'UnitPriceTxtBox
@@ -168,19 +273,19 @@ Public Class MainForm
         'clientGLTxtBox
         'clientFACombo
 
-
         'ItemTotalTxtBox
         '
+
+        'MsgBox("inside new")
+
         Dim fundingSourcesList As String() = {"Operating", "Capital"}
         Dim taxCodeList As String() = {"R0", "R1", "R2", "R3", "R8", "R9"}
 
         fundingSourcesCombo.Items.AddRange(fundingSourcesList)
-
         If fundingSourcesCombo.SelectedValue = fundingSourcesList(0) Then
 
             costCentreTxtBox.Enabled = True
             costCentreSrchBtn.Enabled = True
-
 
             wbsNoTxtBox.Enabled = False
 
@@ -208,10 +313,6 @@ Public Class MainForm
 
         'Save and Continue
         '
-
-
-        Dim sqlDictionary As New Dictionary(Of String, String)
-
         '-----------------------------
         sqlDictionary.Add("LocCodeTxtBox", "Office_Loc_code")
         sqlDictionary.Add("BldgTxtBox", "Building_Name")
@@ -221,143 +322,184 @@ Public Class MainForm
         sqlDictionary.Add("PostalTxtBox", "Postal_Code")
         sqlDictionary.Add("CntryTxtBox", "Country")
 
-        resultListView.Columns.Add(" ", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add(" ", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add(" ", 80, HorizontalAlignment.Left)
-
-        resultListView.Columns.Add("Item Description", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Qty", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Unit", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("GST", 40, HorizontalAlignment.Left)
-        resultListView.Columns.Add("PST", 40, HorizontalAlignment.Left)
-        resultListView.Columns.Add("HST", 40, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Item Total($)", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Product", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("FRE", 80, HorizontalAlignment.Left)
-
-        resultListView.Columns.Add("Payment #", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Payment Type", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Amount($)", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Pay Date", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("SAP Doc.#", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Explanation", 200, HorizontalAlignment.Left)
-
-        resultListView.Columns.Add("Amount($) ", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client CC", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client WBS", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client GL", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client FA", 160, HorizontalAlignment.Left)
-
-
-        sqlDictionary.Add("LocCodeTxtBox", "Office_Loc_code")
-        sqlDictionary.Add("BldgTxtBox", "Building_Name")
-
-        sqlDictionary.Add("CityTxtBox", "City")
-        sqlDictionary.Add("ProvTxtBox", "Prov")
-        sqlDictionary.Add("PostalTxtBox", "Postal_Code")
-        sqlDictionary.Add("CntryTxtBox", "Country")
-
-
-        'Product Search
-        resultListView.Columns.Add("Product code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Product Description", 300, HorizontalAlignment.Left)
-
-        sqlDictionary.Add("codeTxtBox", "prod_code")
-        sqlDictionary.Add("descTxtBox", "prod_desc")
-
-
-        '-M client
-        resultListView.Columns.Add("Client code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client Org Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Company Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client F. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client L. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("SAP Code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client Type", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str Num.", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str Num Suffix", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str. Unit", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("City", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Prov", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Country", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Postal code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Phone Number", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Phone Extension", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Fax Number", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Email", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Input By ", 80, HorizontalAlignment.Left)
-
-
-        '-M client sql
-
-
-        '-M CC 
-        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Description", 150, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Short Description", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("B. Unit code ", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("B. Unit Description ", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Service Elem Group code", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Service Elem Group Desc", 150, HorizontalAlignment.Left)
-
-        '-M Client CC
-        resultListView.Columns.Add("CL CC ID", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CL code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client F. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Client L. Name", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Org Name", 120, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Description", 150, HorizontalAlignment.Left)
-        resultListView.Columns.Add("CC Short Description", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("WBS Num", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Active ", 80, HorizontalAlignment.Left)
-
-        '-M GL
-        resultListView.Columns.Add("GL Description", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("GL Category", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("GL Group", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("GL Subgroup", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("FRE Approved", 80, HorizontalAlignment.Left)
-
-        '-- CC Search 
-        resultListView.Columns.Add("CC Code", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Cost Centre Description", 150, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Business Unit Code", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Business Unit Desc ", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Service Elem Group", 100, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Service Elem Group Desc", 150, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str Num.", 80, HorizontalAlignment.Left)
-        resultListView.Columns.Add("Str Num Suffix", 80, HorizontalAlignment.Left)
-
-        sqlDictionary.Add("orgNameTxtBox", "client_org_name")
-        sqlDictionary.Add("FnameTxtBox", "client_fname")
-        sqlDictionary.Add("LnameTxtBox", "client_lname")
-        sqlDictionary.Add("clientTypeTxtBox", "client_type")
-
-        sqlDictionary.Add("StrtSufTxtBox", "str_num_suffix")
-        sqlDictionary.Add("StrtNameTxtBox", "str_name")
-        sqlDictionary.Add("StrtUnitTxtBox", "str_unit")
-        sqlDictionary.Add("cityTxtBox", "city")
-        sqlDictionary.Add("provTxtBox", "prov")
-        sqlDictionary.Add("cntyTxtBox", "country")
-        sqlDictionary.Add("postalTxtBox", "postal_code")
-        sqlDictionary.Add("phoneTxtBox", "phone_num")
-        sqlDictionary.Add("faxTxtBox", "fax_num")
-        sqlDictionary.Add("emailTxtBox", "email")
-
-        sqlDictionary.Add("SAPTxtBox", "client_sap_code")
-        sqlDictionary.Add("inputbyTxtBox", "input_by")
-        sqlDictionary.Add("phoneExtTxtBox", "phone_extension")
-
-        'select, insert, edit, delete sql for the entry
-
     End Sub
 
 
     Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles fundingSourcesCombo.SelectedIndexChanged
 
 
+
+
+
+
+    End Sub
+
+    Private Sub DataValidation()
+
+        Dim whereClauseBuilder As New StringBuilder
+
+        'Client CC 
+        sqlDictionary.Add("yearUseTxtBox", "clcc.cc_year_use")
+
+        sqlDictionary.Add("clientcodeTxtBox", "clcc.client_code")
+        sqlDictionary.Add("fnameTxtBox", "cl.client_fname")
+        sqlDictionary.Add("lnameTxtBox", "cl.client_lname")
+        sqlDictionary.Add("orgTxtBox", "cl.client_org_name")
+
+        sqlDictionary.Add("ccCodeTxtBox", "clcc.cc_code")
+        sqlDictionary.Add("ccDescTxtBox", "clcc.cc_desc")
+        sqlDictionary.Add("ccShortDescTxtBox", "clcc.cc_short_desc")
+        sqlDictionary.Add("wbsTxtBox", "clcc.wbs_num")
+
+        'active
+        'If activeCombo.selectedValue = 'Yes' Then
+        whereClauseBuilder.append(" clcc.cc_status = 'A'")
+        'End If
+
+
+        'Clients
+        sqlDictionary.Add("clientcodeTxtBox", "clcc.client_code")
+        sqlDictionary.Add("orgTxtBox", "clcc.client_org_name")
+        sqlDictionary.Add("companyNameTxtBox", "c.company_na,me")
+        sqlDictionary.Add("orgTxtBox", "c.client_fname")
+
+
+
+    End Sub
+
+
+    Private Sub getGridData()
+
+
+    End Sub
+
+    Private Sub costCentreSrchBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles costCentreSrchBtn.Click
+        getGridData()
+
+    End Sub
+
+    Private Sub saveBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles saveBtn.Click
+        MsgBox("Save clicked")
+        configButtons(save)
+
+        If actionPerformed = add Then
+            'call the sql to add the new entry
+
+            Dim insertSql = "insert into "tbls_client_cc("")
+
+            'main client
+            Dim insertSql = "insert into_tblsi"
+        End If
+
+        If actionPerformed = edit Then
+            'call the sql to update the entry
+
+            Dim updateSql = "update tbls_client_cc set "
+
+
+
+
+        End If
+
+    End Sub
+
+    Private Sub resultListView_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles resultListView.ItemSelectionChanged
+        Me.EditBtn.Enabled = True
+        Me.delBtn.Enabled = True
+        Me.cancelBtn.Text = "Cancel"
+
+
+        Dim newindex = resultListView.FocusedItem.Index
+
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton1.CheckedChanged
+        'radio button checked.
+        ccCodeTxtBox.Enabled = True
+        ccDescTxtBox.Enabled = True
+        ccShortDescTxtBox.Enabled = True
+        wbsTxtbox.Enabled = False
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton2.CheckedChanged
+        ccCodeTxtBox.Enabled = False
+        ccDescTxtBox.Enabled = False
+        ccShortDescTxtBox.Enabled = False
+        wbsTxtbox.Enabled = True
+    End Sub
+
+    Private Sub AddBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddBtn.Click
+        MsgBox("Add clicked")
+        actionPerformed = add
+        configButtons(add)
+    End Sub
+
+    Private Sub EditBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EditBtn.Click
+        MsgBox("Edit clicked")
+        actionPerformed = edit
+        configButtons(edit)
+
+        'fill in the value into the text box
+        idTxtBox.Text = resultListView.FocusedItem.SubItems(0).Text
+        YearUseTxtBox.Text = resultListView.FocusedItem.SubItems(?).Text
+
+        '
+        If resultListView.FocusedItem.SubItems(9).Text = "A" Then
+            activeCombo.selectedItem = "Yes"
+        End If
+
+        clientCodeTxtBox.Text = resultListView.FocusedItem.SubItems(1).Text
+        fnameTxtBox.Text = resultListView.FocusedItem.SubItems(2).Text
+        lnameTxtBox.Text = resultListView.FocusedItem.SubItems(3).Text
+
+        If resultListView.FocusedItem.SubItems(8).Text.Length > 0 Then
+            wbsTxtNum.Text = resultListView.FocusedItem.SubItems(8).Text
+        Else
+            ccCodeTxtBox.Text = resultListView.FocusedItem.SubItems(5).Text
+            ccDescTxtBox.Text = resultListView.FocusedItem.SubItems(6).Text
+            ccShortDescTxtBox.Text = resultListView.FocusedItem.SubItems(7).Text
+        End If
+
+
+
+    End Sub
+
+    Private Sub delBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles delBtn.Click
+        MsgBox("del clicked")
+        actionPerformed = delete
+
+        Dim a = MsgBox("Are you sure you want to delete?", MsgBoxStyle.OkCancel)
+        If a = MsgBoxResult.Ok Then
+            MsgBox("entry deleted")
+
+            'remove the entry in the list? or call the resultList again.
+            Dim delId = resultListView.FocusedItem.SubItems(0).Text
+            MsgBox("delID is " + delId)
+
+            Dim delSql = "delete from tbls_client_cc where client_cc_id = " + delId
+
+            'call sql
+
+        End If
+    End Sub
+
+    Private Sub closeBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles closeBtn.Click
+        MsgBox("close/cancel clicked")
+
+        If closeBtn.Text = "Close" Then
+            actionPerformed = defaultaction
+            Me.Close()
+        Else
+            'cancel current edit/add action
+            Dim a = MsgBox("Are you sure you want to cancel", MsgBoxStyle.OkCancel)
+            If a = MsgBoxResult.Ok Then
+                configButtons(defaultaction)
+            End If
+        End If
+
+    End Sub
+
+    Private Sub resultListView_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles resultListView.SelectedIndexChanged
 
     End Sub
 End Class
